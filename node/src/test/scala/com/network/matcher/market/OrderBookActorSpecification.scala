@@ -29,7 +29,7 @@ import scala.util.Random
 
 class OrderBookActorSpecification extends MatcherSpec("OrderBookActor") with ImplicitSender with MatcherTestData with PathMockFactory {
 
-  val defaultPair            = AssetPair(Some(ByteStr("BTC".getBytes)), Some(ByteStr("WAVES".getBytes)))
+  val defaultPair            = AssetPair(Some(ByteStr("BTC".getBytes)), Some(ByteStr("MIR".getBytes)))
   val blockchain: Blockchain = stub[Blockchain]
   val hugeAmount             = Long.MaxValue / 2
   (blockchain.portfolio _)
@@ -39,7 +39,7 @@ class OrderBookActorSpecification extends MatcherSpec("OrderBookActor") with Imp
                 LeaseBalance.empty,
                 Map(
                   ByteStr("BTC".getBytes)   -> hugeAmount,
-                  ByteStr("WAVES".getBytes) -> hugeAmount
+                  ByteStr("MIR".getBytes) -> hugeAmount
                 )))
   val issueTransaction: IssueTransactionV1 = IssueTransactionV1
     .selfSigned(PrivateKeyAccount("123".getBytes), "MinerReward".getBytes, Array.empty, 10000000000L, 8.toByte, true, 100000L, 10000L)
@@ -383,7 +383,7 @@ class OrderBookActorSpecification extends MatcherSpec("OrderBookActor") with Imp
     }
 
     "buy small amount of pricey asset" in obcTest { (pair, actor) =>
-      val p = AssetPair(Some(ByteStr("WAVES".getBytes)), Some(ByteStr("USD".getBytes)))
+      val p = AssetPair(Some(ByteStr("MIR".getBytes)), Some(ByteStr("USD".getBytes)))
       val b = rawBuy(p, 280, 700000L)
       val s = rawSell(p, 280, 30000000000L)
       actor ! s

@@ -37,7 +37,7 @@ class CancelOrderTestSuite extends MatcherSuiteBase {
     matcherNode.orderBook(wavesUsdPair).asks shouldBe empty
   }
 
-  "Alice and Bob trade WAVES-USD" - {
+  "Alice and Bob trade MIR-USD" - {
     "place usd-waves order" in {
       // Alice wants to sell USD for Waves
       val orderId1      = matcherNode.placeOrder(bobAcc, wavesUsdPair, OrderType.SELL, 800, 100.waves).message.id

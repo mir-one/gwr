@@ -44,7 +44,7 @@ object LevelDBWriter {
 
   /** {{{([15, 12, 3], [12, 5]) => [(15, 12), (12, 12), (3, 12), (3, 5)]}}}
     *
-    * @param wbh WAVES balance history
+    * @param wbh MIR balance history
     * @param lbh Lease balance history
     */
   private[database] def merge(wbh: Seq[Int], lbh: Seq[Int]): Seq[(Int, Int)] = {

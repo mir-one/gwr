@@ -307,7 +307,7 @@ class SignAndBroadcastApiSuite extends BaseTransactionSuite {
       val mf                  = 300000L
       val buyAmount           = 2
       val sellAmount          = 3
-      val assetPair           = AssetPair.createAssetPair("WAVES", issueTx).get
+      val assetPair           = AssetPair.createAssetPair("MIR", issueTx).get
       val buy                 = Order.buy(buyer, matcher, assetPair, buyPrice, buyAmount, time, expirationTimestamp, mf, o1ver)
       val sell                = Order.sell(seller, matcher, assetPair, sellPrice, sellAmount, time, expirationTimestamp, mf, o2ver)
 

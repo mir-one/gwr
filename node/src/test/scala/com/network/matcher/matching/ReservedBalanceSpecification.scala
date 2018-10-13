@@ -70,7 +70,7 @@ class ReservedBalanceSpecification
     Some(ByteStr((prefixBytes ++ Array.fill[Byte](32 - prefixBytes.length)(0.toByte)).take(32)))
   }
 
-  val pair = AssetPair(mkAssetId("WAVES"), mkAssetId("USD"))
+  val pair = AssetPair(mkAssetId("MIR"), mkAssetId("USD"))
   val p    = new AssetPairDecimals(8, 2)
 
   var oh = new OrderHistory(db, matcherSettings)

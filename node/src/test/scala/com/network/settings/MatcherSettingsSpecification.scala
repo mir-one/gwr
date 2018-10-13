@@ -24,7 +24,7 @@ class MatcherSettingsSpecification extends FlatSpec with Matchers {
         |    order-cleanup-interval: 5m
         |    rest-order-limit: 100
         |    price-assets: [
-        |      "WAVES",
+        |      "MIR",
         |      "8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS",
         |      "DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J"
         |    ]
@@ -52,7 +52,7 @@ class MatcherSettingsSpecification extends FlatSpec with Matchers {
     settings.snapshotsInterval should be(1.day)
     settings.orderCleanupInterval should be(5.minute)
     settings.maxOrdersPerRequest should be(100)
-    settings.priceAssets should be(Seq("WAVES", "8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS", "DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J"))
+    settings.priceAssets should be(Seq("MIR", "8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS", "DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J"))
     settings.blacklistedAssets shouldBe Set("a")
     settings.blacklistedNames.map(_.pattern.pattern()) shouldBe Seq("b")
     settings.validationTimeout shouldBe 10.minutes

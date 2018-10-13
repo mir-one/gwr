@@ -88,11 +88,11 @@ object AsyncMatcherHttpApi extends Assertions {
 
     def parseAssetPair(assetPair: AssetPair): (String, String) = {
       val amountAsset = assetPair.amountAsset match {
-        case None => "WAVES"
+        case None => "MIR"
         case _    => assetPair.amountAsset.get.base58
       }
       val priceAsset = assetPair.priceAsset match {
-        case None => "WAVES"
+        case None => "MIR"
         case _    => assetPair.priceAsset.get.base58
       }
       (amountAsset, priceAsset)

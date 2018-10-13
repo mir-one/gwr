@@ -65,7 +65,7 @@ class OrderValidatorSpecification
   val pairWavesBtc  = AssetPair(None, Some(wbtc))
 
   "OrderValidator" should {
-    "allows buy WAVES for BTC without balance for order fee" in {
+    "allows buy MIR for BTC without balance for order fee" in {
       validateNewOrderTest(
         Portfolio(0,
                   LeaseBalance.empty,

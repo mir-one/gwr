@@ -85,7 +85,7 @@ class BlockchainUpdaterBlockMicroblockSequencesSameTransactionsTest
         t <- randomPayments(accs, ts + 1, amt - 1)
       } yield h +: t
 
-  val TOTAL_WAVES = ENOUGH_AMT
+  val TOTAL_MIR = ENOUGH_AMT
 
   def accsAndGenesis(): Gen[(Seq[PrivateKeyAccount], PrivateKeyAccount, Block, Int)] =
     for {
@@ -95,10 +95,10 @@ class BlockchainUpdaterBlockMicroblockSequencesSameTransactionsTest
       dave    <- accountGen
       miner   <- accountGen
       ts      <- positiveIntGen
-      genesis1: GenesisTransaction = GenesisTransaction.create(alice, TOTAL_WAVES / 4, ts).explicitGet()
-      genesis2: GenesisTransaction = GenesisTransaction.create(bob, TOTAL_WAVES / 4, ts + 1).explicitGet()
-      genesis3: GenesisTransaction = GenesisTransaction.create(charlie, TOTAL_WAVES / 4, ts + 2).explicitGet()
-      genesis4: GenesisTransaction = GenesisTransaction.create(dave, TOTAL_WAVES / 4, ts + 4).explicitGet()
+      genesis1: GenesisTransaction = GenesisTransaction.create(alice, TOTAL_MIR / 4, ts).explicitGet()
+      genesis2: GenesisTransaction = GenesisTransaction.create(bob, TOTAL_MIR / 4, ts + 1).explicitGet()
+      genesis3: GenesisTransaction = GenesisTransaction.create(charlie, TOTAL_MIR / 4, ts + 2).explicitGet()
+      genesis4: GenesisTransaction = GenesisTransaction.create(dave, TOTAL_MIR / 4, ts + 4).explicitGet()
     } yield
       (Seq(alice, bob, charlie, dave), miner, customBuildBlockOfTxs(randomSig, Seq(genesis1, genesis2, genesis3, genesis4), defaultSigner, 1, ts), ts)
 

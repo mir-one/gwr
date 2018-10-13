@@ -54,7 +54,7 @@ class MatcherTestSuite extends MatcherSuiteBase {
       markets.amountAssetName shouldBe amountAssetName
       markets.amountAssetInfo shouldBe Some(AssetDecimalsInfo(aliceCoinDecimals))
 
-      markets.priceAssetName shouldBe "WAVES"
+      markets.priceAssetName shouldBe "MIR"
       markets.priceAssetInfo shouldBe Some(AssetDecimalsInfo(8))
     }
 
@@ -238,7 +238,7 @@ class MatcherTestSuite extends MatcherSuiteBase {
       }
 
       "request order book for blacklisted pair" in {
-        val f = matcherNode.matcherGetStatusCode(s"/matcher/orderbook/$ForbiddenAssetId/WAVES", 404)
+        val f = matcherNode.matcherGetStatusCode(s"/matcher/orderbook/$ForbiddenAssetId/MIR", 404)
         f.message shouldBe s"Invalid Asset ID: $ForbiddenAssetId"
       }
 

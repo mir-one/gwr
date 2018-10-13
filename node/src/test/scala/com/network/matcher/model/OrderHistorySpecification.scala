@@ -106,7 +106,7 @@ class OrderHistorySpecification
     }
   }
 
-  property("New buy WAVES order added") {
+  property("New buy MIR order added") {
     val pair = AssetPair(None, mkAssetId("BTC"))
     val ord  = buy(pair, 0.008, 1000, matcherFee = Some(3000))
     val lo   = LimitOrder(ord)
@@ -119,7 +119,7 @@ class OrderHistorySpecification
       info shouldBe OrderInfo(ord.amount, 0, None, Some(lo.minAmountOfAmountAsset), ord.matcherFee, Some(0L))
     }
 
-    withClue("reserved assets considering amount of received WAVES") {
+    withClue("reserved assets considering amount of received MIR") {
       oh.openVolume(ord.senderPublicKey, pair.amountAsset) shouldBe 2000L
       oh.openVolume(ord.senderPublicKey, pair.priceAsset) shouldBe 8L
     }
@@ -127,7 +127,7 @@ class OrderHistorySpecification
     activeOrderIds(ord.senderPublicKey) shouldBe Seq(ord.id())
   }
 
-  property("New sell WAVES order added") {
+  property("New sell MIR order added") {
     val pair = AssetPair(None, mkAssetId("BTC"))
     val ord  = sell(pair, 0.0008, 10000)
     val lo   = LimitOrder(ord)
@@ -140,7 +140,7 @@ class OrderHistorySpecification
     activeOrderIds(ord.senderPublicKey) shouldBe Seq(ord.id())
   }
 
-  property("Should not reserve fee, if seller receives more WAVES than total fee in sell order") {
+  property("Should not reserve fee, if seller receives more MIR than total fee in sell order") {
     val pair = AssetPair(mkAssetId("BTC"), None)
     val ord  = sell(pair, 0.01, 100000, matcherFee = Some(1000L))
 
@@ -152,7 +152,7 @@ class OrderHistorySpecification
     oh.openVolume(ord.senderPublicKey, pair.priceAsset) shouldBe 0L
   }
 
-  property("Should not reserve fee, if buyer receives more WAVES than total fee in buy order") {
+  property("Should not reserve fee, if buyer receives more MIR than total fee in buy order") {
     val pair = AssetPair(None, mkAssetId("BTC"))
     val ord  = buy(pair, 0.0007, 100000, matcherFee = Some(1000L))
 
@@ -193,7 +193,7 @@ class OrderHistorySpecification
     }
   }
 
-  property("Buy WAVES order filled exactly") {
+  property("Buy MIR order filled exactly") {
     val pair      = AssetPair(None, mkAssetId("BTC"))
     val counter   = buy(pair, 0.0008, 100000, matcherFee = Some(2000L))
     val submitted = sell(pair, 0.0007, 100000, matcherFee = Some(1000L))
@@ -236,7 +236,7 @@ class OrderHistorySpecification
     }
   }
 
-  property("Buy WAVES order filled with remainder") {
+  property("Buy MIR order filled with remainder") {
     val pair      = AssetPair(None, mkAssetId("BTC"))
     val counter   = sell(pair, 0.00000238, 840340L, matcherFee = Some(300000L))
     val submitted = buy(pair, 0.00000238, 425532L, matcherFee = Some(300000L))
@@ -311,7 +311,7 @@ class OrderHistorySpecification
     }
   }
 
-  property("Sell WAVES order - filled, buy order - partial") {
+  property("Sell MIR order - filled, buy order - partial") {
     val pair      = AssetPair(None, mkAssetId("BTC"))
     val counter   = sell(pair, 0.0008, 100000000, matcherFee = Some(2000L))
     val submitted = buy(pair, 0.00085, 120000000, matcherFee = Some(1000L))
@@ -368,7 +368,7 @@ class OrderHistorySpecification
     }
   }
 
-  property("Buy WAVES order - filled with 2 steps, sell order - partial") {
+  property("Buy MIR order - filled with 2 steps, sell order - partial") {
     val pair       = AssetPair(None, mkAssetId("BTC"))
     val counter    = buy(pair, 0.0008, 100000000, matcherFee = Some(300001L))
     val submitted1 = sell(pair, 0.00075, 50000000, matcherFee = Some(300001L))
@@ -464,7 +464,7 @@ class OrderHistorySpecification
     }
   }
 
-  property("Sell ETH twice (filled, partial), buy WAVES order - filled") {
+  property("Sell ETH twice (filled, partial), buy MIR order - filled") {
     val pair      = AssetPair(mkAssetId("ETH"), None)
     val counter1  = sell(pair, 0.003, 2864310, matcherFee = Some(300000L))
     val counter2  = sell(pair, 0.003, 7237977, matcherFee = Some(300000L))
@@ -683,7 +683,7 @@ class OrderHistorySpecification
     val submittedInfo = oh.orderInfo(submitted.id())
     submittedInfo.status shouldBe LimitOrder.Filled(100000000)
 
-    oh.openVolume(pk, pair.amountAsset) shouldBe 0 // We receive 210000000 >> 300000 WAVES
+    oh.openVolume(pk, pair.amountAsset) shouldBe 0 // We receive 210000000 >> 300000 MIR
 
     val counterLo             = LimitOrder(counter)
     val expectedPriceReserved = counterLo.getSpendAmount - counterInfo.totalSpend(counterLo)

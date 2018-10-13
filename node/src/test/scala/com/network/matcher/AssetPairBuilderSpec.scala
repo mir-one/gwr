@@ -16,7 +16,7 @@ class AssetPairBuilderSpec extends FreeSpec with Matchers with MockFactory {
 
   private def b(v: String) = ByteStr.decodeBase58(v).get
 
-  private val WAVES  = "WAVES"
+  private val MIR  = "MIR"
   private val WUSD   = ByteStr.decodeBase58("HyFJ3rrq5m7FxdkWtQXkZrDat1F7LjVVGfpSkUuEXQHj").get
   private val WBTC   = ByteStr.decodeBase58("Fmg13HEHJHuZYbtJq8Da8wifJENq8uBxDuWoP9pVe2Qe").get
   private val WEUR   = ByteStr.decodeBase58("2xnE3EdpqXtFgCP156qt1AbyjpqdZ5jGjWo3CwTawcux").get
@@ -46,12 +46,12 @@ class AssetPairBuilderSpec extends FreeSpec with Matchers with MockFactory {
 
   private val pairs = Table(
     ("amount", "price", "result"),
-    (WAVES, WUSD.base58, Right(())),
-    (WUSD.base58, WAVES, Left("Pair should be reverse")),
+    (MIR, WUSD.base58, Right(())),
+    (WUSD.base58, MIR, Left("Pair should be reverse")),
     (WBTC.base58, WEUR.base58, Left("Pair should be reverse")),
     (WEUR.base58, WBTC.base58, Right(())),
-    (Asset1.base58, WAVES, Right(())),
-    (WAVES, Asset1.base58, Left("Pair should be reverse")),
+    (Asset1.base58, MIR, Right(())),
+    (MIR, Asset1.base58, Left("Pair should be reverse")),
     (Asset2.base58, Asset1.base58, Right(())),
     (Asset1.base58, Asset2.base58, Left("Pair should be reverse")),
     (Asset1.base58, WBTC.base58, Right(())),
